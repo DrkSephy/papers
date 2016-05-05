@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {subsection}{\numberline {1.1}Financial Factors}{2}
+\contentsline {subsection}{\numberline {1.2}Scaling Time Series Data}{2}
+\contentsline {section}{\numberline {2}BPN Architecture}{3}
+\contentsline {subsection}{\numberline {2.1}Demystifying BPN Connections}{3}
+\contentsline {section}{\numberline {3}Training methodology}{4}
+\contentsline {subsection}{\numberline {3.1}Activation Function}{4}
+\contentsline {subsection}{\numberline {3.2}Output}{4}
+\contentsline {subsection}{\numberline {3.3}Testing methodology}{4}
+\contentsline {section}{\numberline {4}Results}{4}
+\contentsline {section}{\numberline {5}Improvements}{5}
+\contentsline {section}{\numberline {6}Conclusion}{5}
+\contentsline {section}{\numberline {7}Source Code}{6}

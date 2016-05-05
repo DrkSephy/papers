@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Terminology}{2}
+\contentsline {subsection}{\numberline {2.1}Monte Carlo Tree Search}{2}
+\contentsline {subsection}{\numberline {2.2}Convolutional Neural Networks}{3}
+\contentsline {subsection}{\numberline {2.3}Policy Network}{4}
+\contentsline {subsection}{\numberline {2.4}Value Network}{4}
+\contentsline {section}{\numberline {3}Training Pipeline}{4}
+\contentsline {subsection}{\numberline {3.1}Supervised learning of the Policy Network}{5}
+\contentsline {subsection}{\numberline {3.2}Reinforcement Learning of Policy Networks}{5}
+\contentsline {subsection}{\numberline {3.3}Reinforcement Learning of Value Networks}{6}
+\contentsline {subsection}{\numberline {3.4}Fast Rollout Policy}{6}
+\contentsline {section}{\numberline {4}Searching using Policy and Value Networks}{6}
+\contentsline {section}{\numberline {5}Hardware}{6}
+\contentsline {section}{\numberline {6}Rankings}{7}
+\contentsline {section}{\numberline {7}AlphaGo versus Go Champions}{7}
+\contentsline {section}{\numberline {8}AlphaGo's Future}{8}
+\contentsline {section}{\numberline {9}Conclusion}{8}
