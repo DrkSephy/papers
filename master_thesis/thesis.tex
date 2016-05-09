@@ -103,7 +103,7 @@ The goal of collaboration is to have groups of students which effectively contri
 
 \subsection {Metrics}
 
-As we have seen in Section 3, version control systems provide us with the ability to track issues and commits. However, we are not limited to these metrics alone - there are various other parameters which are readily made available to us:
+As we have seen in Section 2, version control systems provide us with the ability to track issues and commits. However, we are not limited to these metrics alone - there are various other parameters which are readily made available to us:
 
 \begin {itemize}
 	\item {\textbf{Lines of Code}}: How many lines of code did each student contribute to the project? This can be attributed to how much work has gone into their implementations.
@@ -112,7 +112,7 @@ As we have seen in Section 3, version control systems provide us with the abilit
 	\item {\textbf{Issues Closed}}: How many issues were closed by each student? These correlate to how many features were implemented by each individual student.
 \end {itemize}
 
-Individually, these parameters are not particularly useful nor do they properly demonstrate the performance of a student. However, putting them all together will paint a meaningful and convincing story regarding the lifespan of a project as well as allowing Professors to understand how students are performing. We begin by describing the collection of these parameters for a given project. 
+Individually, these parameters are not particularly useful nor do they properly demonstrate the performance of a student. However, putting them all together will paint a meaningful and convincing story regarding the lifespan of a project as well as allowing professors to understand how students are performing. We begin by describing the collection of these parameters for a given project. 
 
 \subsection {Bitbucket API}
 
@@ -167,7 +167,7 @@ The most important aspect of this project will be it's performance, both on the 
 
 \subsection {React.js}
 
-Given a class of 100 students with groups consisting of roughly 4\~ 5 students, a Professor will have to visualize data for 20\~25 projects. As such, we will find ourselves rendering various data components which need to be efficient over time. Rendering data on the web browser requires modifying the \textbf{Document Object Model (DOM)} tree, which represents the layout of a web page. 
+Given a class of 100 students with groups consisting of roughly 4$\sim$5 students, a Professor will have to visualize data for 20$\sim$25 projects. As such, we will find ourselves rendering various data components which need to be efficient over time. Rendering data on the web browser requires modifying the \textbf{Document Object Model (DOM)} tree, which represents the layout of a web page. 
 
 \begin{figure}[h!]
 \centering
@@ -175,9 +175,9 @@ Given a class of 100 students with groups consisting of roughly 4\~ 5 students, 
 \caption{Document Object Model Tree}
 \end{figure}
 
-In terms of efficiency, updating the DOM tree consists of completely re-writing the tree from scratch. When updating the tree with new data and elements, this becomes costly in terms of node updates and rendering. Luckily, Facebook has released a cutting-edge library called \textbf{React} which is used for building sleek and efficient User Interfaces. React's power is it's ability to update the DOM tree in $\mathcal{O}(n)$ through it's efficient diffing algorithm. Instead of thrashing the entire DOM tree and rebuilding it from scratch, React computes a shadow DOM which shows the change in nodes from the actual DOM, and uses this to update the actual DOM by replacing/removing any nodes which have been marked for update. This problem, known as \textbf{reconciliation of the DOM} is asymptotically an $\mathcal{O}(n^3)$ problem that has been transformed to $\mathcal{O}(n)$ asymptotically.
+In terms of efficiency, updating the DOM tree consists of completely re-writing the tree from scratch. When updating the tree with new data and elements, this becomes costly in terms of node updates and rendering. Luckily, Facebook has released a cutting-edge library called \textbf{React} which is used for building sleek and efficient User Interfaces. React's power is it's ability to update the DOM tree in $\mathcal{O}(n)$ consistently through it's efficient diffing algorithm. Instead of thrashing the entire DOM tree and rebuilding it from scratch, React computes a shadow DOM which shows the change in nodes from the actual DOM, and uses this to update the actual DOM by replacing/removing any nodes which have been marked for update. While rebuilding the tree itself takes on average $\mathcal{O}(n)$, the known lower bounds are $\Omega (n^2)$ and the worst case is  $\mathcal{O}(n^3)$.
 
-At a high level, React's reconciliation works by using hand-crafted heuristics which help to predict which parts of the DOM tree are more likely to be updated. In our application, we will often find ourselves updating visualizations and datasets which will benefit from this efficient algorithm, which in turn will allow us to build a highly responsive user interface.
+At a high level, React's reconciliation works by using hand-crafted heuristics which help to predict which parts of the DOM tree are more likely to be updated. Fundamentally, this problem is known as the \textbf{tree edit distance} problem [13], in which we want to compute the minimal-cost sequence of node edit operations to transform one tree into another. In our application, we will often find ourselves updating visualizations and datasets which will benefit from this efficient algorithm, which in turn will allow us to build a highly responsive user interface.
 
 \begin{figure}[h!]
 \centering
@@ -403,9 +403,10 @@ Given two graphs $G_1$ and $G_2$ which contain the same number of vertices conne
 \caption{Graph Isomorphism Example}
 \end{figure}
 
-Translating this notion to analyzing source code, it is possible to represent control flow of a program in terms of a graph. In this case, each \emph{function} would correspond to a node in the graph, and the transitions (\emph{edges}) would map to how these functions are transitioned to from the main program. Given two side-by-side programs, we can detect if these two programs are simply \emph{permutations} of each other - meaning that they are essentially replicated copies with functions swapped. 
+Translating this notion to analyzing source code, it is possible to represent control flow of a program in terms of a graph. In this case, each \emph{function} would correspond to a node in the graph, and the transitions (\emph{edges}) would map to how these functions are transitioned to from the main program. Given two side-by-side programs, we can detect if these two programs are simply \emph{permutations} of each other - meaning that they are essentially replicated copies with functions swapped. This feature can be implemented in quasi-polynomal time [14] and there exist several heuristics for determining whether random graphs [15] and trees [16] are isomorphic. This feature is useful for detecting plagiarism between open-ended projects as described in Section 2.2, but doesn't hold up in assignments in which project skeletons are used.
+\subsection {Cyclomatic Complexity}
 
-This feature is useful for detecting plagiarism between open-ended projects as described in Section 2.2, but doesn't hold up in assignments in which project skeletons are used.
+In the case of project skeletons, we can employ the use of cyclomatic complexity which is a measure of program complexity by computing the number of linearly independent paths in the source code. Similar to Graph Isomorphism, we can construct a graph with nodes corresponding to \emph{functions}, \emph{modules}, \emph{methods} or \emph{classes}. We connect these nodes based on the progression of the program, i.e: some function \emph{x} calls function \emph{y}, and so on - known as the \textbf{control flow graph}. Using this metric, a professor can quickly tell if programs written by students have the same measures, thereby correlating the majority of students who are on the right track towards finishing the assignment.
 
 \subsection {Exporting Visualizations as Reports}
 
@@ -479,7 +480,7 @@ Philippe De Ryck, Lieven Desmet, Frank Piessens, Wouter Joosen
 \textit{Improving the Security of Session Management in Web Applications}.
 (2013): 0-0.
 
-\bibitem{einstein} 
+\bibitem{einstein}
 Andrew Bortz, Adam Barth, Alexei Czeskis
 \textit{Origin Cookies: Session Integrity for Web Applications}.
 Web 2.0 Security and Privacy (W2SP), 2011
@@ -488,6 +489,26 @@ Web 2.0 Security and Privacy (W2SP), 2011
 Michael D. Grossberg,  Joesan A. Gabaldon Jr., Paul K. Alabi, Jeremy K. Neiman, Irina Gladkova
 \textit{Graphyte software for integrated remote sensing research using HPCC}. 
 SPIE 2011
+
+\bibitem{latexcompanion} 
+Philip Bille
+\textit{A Survey on Tree Edit Distance and Related Problems}. 
+Theoretical Computer Science 337 (2005) 217 Ð 239
+
+\bibitem{latexcompanion} 
+Babai, L‡szl—
+\textit{Graph isomorphism in quasipolynomial time}. 
+arXiv preprint arXiv:1512.03547 (2015)
+
+\bibitem{latexcompanion} 
+Czajka, Tomek, and Gopal Pandurangan
+\textit{Improved random graph isomorphism}. 
+Journal of Discrete Algorithms 6.1 (2008): 85-92.
+
+\bibitem{latexcompanion} 
+Buss, Samuel R.
+\textit{Alogtime algorithms for tree isomorphism, comparison, and canonization}. 
+Springer Berlin Heidelberg, 1997.
 
 \end{thebibliography}
 
