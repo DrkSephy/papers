@@ -76,7 +76,7 @@ Given the general form of the data, the big challenge is to come up with a meani
 
 \subsection {Code Swarm}
 
-Code Swarm [2] is a visualization of commits in a repository, which was also created by Michael Ogawa [1]. Code Swarm represents files as moving elements, where both files are mapped to the developer which created it. Moreover, these files are color coded based on whether or not they are source code or general documents. When developers drop off in their contributions, they fade over time from the underlying histogram at the bottom which allows us to keep track of what events have occurred before in the timeline. Code Swarm is able to visualize a wide spectrum of repository types: 
+Code Swarm [2] is a visualization of commits in a repository, which was also created by Michael Ogawa [1]. Code Swarm represents files as moving elements, where files are mapped to the developer which created it. Moreover, these files are color coded based on whether or not they are source code or general documents. When developers drop off in their contributions, they fade over time from the underlying histogram at the bottom which allows us to keep track of what events have occurred before in the timeline. Code Swarm is able to visualize a wide spectrum of repository types: 
 
 \begin {itemize}
 	\item {Subversion}
@@ -131,7 +131,7 @@ Our first goal was to show the sum totals of various events across all Facebook 
 \begin {itemize}
 	\item \textbf{Commit Comments}: The number of comments made on an individual line of code.
 	\item \textbf{Forks}: The number of fork events.
-	\item \textbf{Stars}: The number of stargazer events.
+	\item \textbf{Stars}: The number of stargazer (star) events.
 	\item \textbf{Pull Requests}: The number of pull request events.
 	\item \textbf{Issues}: The number of issue events (issue opened, assigned, closed).
 	\item \textbf{Issue Comments}: The number of issue comments made.
@@ -227,8 +227,8 @@ While this is amazing in itself, we have only shown sum totals of data overall. 
 One of the most important aspects of any visualization is to be able to bring in dynamic data, allowing trends to be more discoverable and to help tell a more meaningful story. To do so, we have implemented a feature which allows the user to select which type of dataset they would like to view:
 
 \begin {itemize}
-	\item \textbf{Total}: The sum total of the last 3 month's worth of data.
-	\item \textbf{Monthly}: The monthly totals of the selected month. Currently supports February, March and April.
+	\item \textbf{Total}: The sum total of the last 4 month's worth of data.
+	\item \textbf{Monthly}: The monthly totals of the selected month. Currently supports January, February, March and April.
 \end {itemize}
 
 By selecting to visualize a specific month of data, all of our visualizations will dynamically update themselves. This in itself is an extremely powerful feature of our visualization, and has many more implications which we discuss in section 5.1. With the implemented features discussed, we move into describing our technology stack.
@@ -255,11 +255,11 @@ While this data was sufficient for some tasks, we were unable to drill down furt
 
 \subsection {Github Archive}
 
-Github Archive\footnote{Github Archive: https://www.githubarchive.org/} keeps track of all events that occur across Github on a daily basis. In any given day, \textbf{json} files are generated which store every action taken by any user: \textbf{push events}, \textbf{issue comment events}, \textbf{issue assigned events}, etc. In fact, Github Archive allows us to drill down as deep as possible in order to aggregate all of the data on a daily basis. In order to process the data, several bash scripts were written which iteratively downloads the datasets from Github Archive on a daily basis for a given month. Once the data is retrieved, it is parsed using various \textbf{Python} scripts using \textbf{Pandas}. We have scripts for processing both the total data over the last few months, as well as for totaling the data for any specific month. Moreover, we have scripts that process the datasets into the correct formats for the event bar chart, event time series and repository tree map. For some rough ideas regarding data size, each month of data which we parsed was upwards of 100+ GB.
+Github Archive\footnote{Github Archive: https://www.githubarchive.org/} keeps track of all events that occur across Github on a daily basis. In any given day, \textbf{json} files are generated which store every action taken by any user: \textbf{push events}, \textbf{issue comment events}, \textbf{issue assigned events}, etc. In fact, Github Archive allows us to drill down as deep as possible in order to aggregate all of the data on a daily basis. In order to process the data, several bash scripts were written which iteratively downloads the datasets from Github Archive on a daily basis for a given month. Once the data is retrieved, it is parsed using various \textbf{Python} scripts. We have scripts for processing both the total data over the last few months, as well as for totaling the data for any specific month. Moreover, we have scripts that process the datasets into the correct formats for the event bar chart, event time series and repository tree map. For some rough ideas regarding data size, each month of data which we parsed was upwards of 100+ GB.
 
 \subsection {Data Driven Documents}
 
-Lastly, we use \textbf{Data Driven Documents}\footnote{D3: https://d3js.org/} (D3) to create our visualizations. D3 is a powerful JavaScript library which allows users to hand-craft their visualizations in any shape or form that they please (at the expense of code complexity). We built the tree map, bar chart and time series in parallel while fleshing our their interactions. Lastly, we implemented interactivity amongst all of the visualizations together.
+Lastly, we use \textbf{Data Driven Documents}\footnote{D3: https://d3js.org/} (D3) to create our visualizations. D3 is a powerful JavaScript library which allows developers to hand-craft their visualizations in any shape or form that they please (at the expense of code complexity). We built the tree map, bar chart and time series in parallel while fleshing out their interactions. Lastly, we implemented interactivity amongst all of the visualizations together.
 
 \section {So What?}
 
@@ -281,7 +281,7 @@ Here we see a massive spike between the third and fourth week in the event time 
 \caption{Github Contributor Graph for Draft.js}
 \end{figure}
 
-Even without knowing this, we can also speculate this from the overwhelming number of \textbf{star} events with respect to all other events. Typically, a repository which has gained a lot of traction on Github will receive an overwhelming number of stars which is evident here. To take it a step further, those who frequent Hacker News knows that stories which are top-voted and happen to be Github projects tend to skyrocket with stars. Unsurprisingly, within that same week there was a top trending Hacker News\footnote{Draft.js Hacker News Post: https://news.ycombinator.com/item?id=11153757} post regarding draft.js. Overall, our visualization does not essentially seek to answer questions, but aims to bring light to trends in Github data which are not immediately obvious. Moreover, we can quickly deduce that projects which occupy a smaller region in the tree map are projects with are either stagnant or were simply stand-alone libraries which were created to serve a single purpose such as CParser (Figure 13). 
+Even without knowing this, we can also speculate this from the overwhelming number of \textbf{star} events with respect to all other events. Typically, a repository which has gained a lot of traction on Github will receive an overwhelming number of stars which is evident here. To take it a step further, those who frequent Hacker News knows that stories which are top-voted and happen to be Github projects tend to skyrocket with stars. Unsurprisingly, within that same week there was a top trending Hacker News\footnote{Draft.js Hacker News Post: https://news.ycombinator.com/item?id=11153757} post regarding draft.js. Overall, our visualization does not essentially seek to answer questions, but aims to bring light to trends in Github data which are not immediately obvious. Moreover, we can quickly deduce that projects which occupy a smaller region in the tree map are projects which are either stagnant or were simply stand-alone libraries which were created to serve a single purpose such as CParser (Figure 13). 
 
 \subsection {Future Work}
 
